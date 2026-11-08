@@ -30,7 +30,7 @@ export const testimonialsID: Testimonial[] = [
     rating: 5,
     date: "September 2026",
     travelerType: "Keluarga (6 Orang)",
-    text: "Bawa orang tua dan anak kecil awalnya khawatir capek, tapi tim Ayo ke Lombok mengatur ritme perjalanan dengan sangat santai. Pasir di Pantai Pink dan makan siang ikan bakarnya juara! Mobil HiAce-nya juga dingin dan bersih.",
+    text: "Bawa orang tua dan anak kecil awalnya khawatir capek, tapi tim Kala Lombok mengatur ritme perjalanan dengan sangat santai. Pasir di Pantai Pink dan makan siang ikan bakarnya juara! Mobil HiAce-nya juga dingin dan bersih.",
   },
   {
     id: "3",

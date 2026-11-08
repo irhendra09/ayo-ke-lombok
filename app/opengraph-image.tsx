@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { SITE_NAME } from "@/lib/site";
 
-export const alt = "Ayo ke Lombok: paket wisata Lombok dengan asisten AI";
+export const alt = "Kala Lombok: paket wisata Lombok dengan asisten AI";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

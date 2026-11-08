@@ -10,9 +10,10 @@ import { Palmtree } from "lucide-react";
 
 export default function Footer() {
   const pathname = usePathname();
-  const isEn = pathname.startsWith("/en");
+  const isEn = pathname === "/en" || pathname.startsWith("/en/");
   const dict = getDictionary(isEn ? "en" : "id");
   const prefix = isEn ? "/en" : "";
+  const homePath = isEn ? "/en" : "/id";
 
   const waHelpMessage = isEn
     ? `Hello ${SITE_NAME}, I would like to get more information about your Lombok tour packages.`
@@ -24,7 +25,7 @@ export default function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-3">
-            <Link href={prefix || "/"} className="inline-flex items-center gap-2 font-bold text-slate-900 text-lg">
+            <Link href={homePath} className="inline-flex items-center gap-2 font-bold text-slate-900 text-lg">
               <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-600 text-white">
                 <Palmtree className="h-4 w-4" aria-hidden />
               </span>
@@ -61,12 +62,12 @@ export default function Footer() {
             </p>
             <ul className="mt-3 space-y-2 text-sm text-slate-600">
               <li>
-                <Link href={`${prefix}/#paket`} className="hover:text-brand-700 transition">
+                <Link href={`${homePath}#paket`} className="hover:text-brand-700 transition">
                   {dict.packages.heading}
                 </Link>
               </li>
               <li>
-                <Link href={`${prefix}/#kategori`} className="hover:text-brand-700 transition">
+                <Link href={`${homePath}#kategori`} className="hover:text-brand-700 transition">
                   {dict.categories.heading}
                 </Link>
               </li>

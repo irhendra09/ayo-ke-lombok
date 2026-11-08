@@ -1,6 +1,6 @@
 export type Locale = "id" | "en";
 
-export const defaultLocale: Locale = "id";
+export const defaultLocale: Locale = "en";
 export const locales: Locale[] = ["id", "en"];
 
 export const dictionaries = {
@@ -186,7 +186,6 @@ export const dictionaries = {
   },
 };
 
-export function getDictionary(locale: Locale = "id") {
-  return dictionaries[locale] || dictionaries.id;
+export function getDictionary(locale: Locale = defaultLocale) {
+  return dictionaries[locale] || dictionaries[defaultLocale];
 }
-

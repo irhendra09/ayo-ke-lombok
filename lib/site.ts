@@ -1,4 +1,4 @@
-export const SITE_NAME = "Ayo ke Lombok";
+export const SITE_NAME = "Kala Lombok";
 
 // Isi NEXT_PUBLIC_SITE_URL dengan domain produksi (mis. https://lomboktravel.id)
 // agar canonical, sitemap, dan gambar sosial memakai URL yang benar.

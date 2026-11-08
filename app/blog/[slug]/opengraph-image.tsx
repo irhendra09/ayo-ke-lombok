@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { getPost, posts } from "@/lib/blog";
 import { SITE_NAME } from "@/lib/site";
 
-export const alt = "Artikel blog Ayo ke Lombok";
+export const alt = "Artikel blog Kala Lombok";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

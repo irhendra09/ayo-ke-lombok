@@ -1,22 +1,23 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { Globe } from "lucide-react";
 
 export default function LanguageSwitcher() {
   const pathname = usePathname();
   const router = useRouter();
-  const isEn = pathname.startsWith("/en");
+  const isEn = pathname === "/en" || pathname.startsWith("/en/");
+  const isIdHome = pathname === "/id";
 
   function switchTo(targetLang: "id" | "en") {
     if (targetLang === "en" && !isEn) {
-      const newPath = pathname === "/" ? "/en" : `/en${pathname}`;
-      router.push(newPath);
+      router.push(isIdHome ? "/en" : `/en${pathname}`);
     } else if (targetLang === "id" && isEn) {
-      const newPath = pathname.replace(/^\/en/, "") || "/";
+      const newPath = pathname.replace(/^\/en/, "") || "/id";
       router.push(newPath);
     }
   }
+
+  const isId = !isEn;
 
   return (
     <div className="flex items-center rounded-xl border border-slate-200 bg-slate-100/80 p-1 text-xs font-semibold shadow-2xs">
@@ -24,7 +25,7 @@ export default function LanguageSwitcher() {
         type="button"
         onClick={() => switchTo("id")}
         className={`flex items-center gap-1 rounded-lg px-2 py-1 transition ${
-          !isEn ? "bg-white text-slate-900 shadow-xs" : "text-slate-500 hover:text-slate-800"
+          isId ? "bg-white text-slate-900 shadow-xs" : "text-slate-500 hover:text-slate-800"
         }`}
         title="Bahasa Indonesia"
       >
@@ -46,4 +47,3 @@ export default function LanguageSwitcher() {
     </div>
   );
 }
-

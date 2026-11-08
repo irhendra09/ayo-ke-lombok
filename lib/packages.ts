@@ -57,8 +57,8 @@ const COMMON_EXCLUDE_EN = [
   "Personal expenses & souvenirs",
 ];
 
-const GROUP_NOTE = "Harga rombongan, minimal 30 peserta";
-const GROUP_NOTE_EN = "Group rate, minimum 30 participants";
+const GROUP_NOTE = "";
+const GROUP_NOTE_EN = "";
 const SIZE_NOTE = "Tersedia pilihan ukuran grup, konfirmasi harga ke admin";
 const SIZE_NOTE_EN = "Multiple group size tiers available, confirm with admin";
 

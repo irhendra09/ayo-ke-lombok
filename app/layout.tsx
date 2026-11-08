@@ -9,18 +9,18 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Ayo ke Lombok | Paket Wisata Lombok Resmi & Terpercaya",
+    default: "Kala Lombok | Official Lombok Tour Packages",
     template: `%s | ${SITE_NAME}`,
   },
-  openGraph: { siteName: SITE_NAME, locale: "id_ID", type: "website" },
+  openGraph: { siteName: SITE_NAME, locale: "en_US", type: "website" },
   twitter: { card: "summary_large_image" },
   description:
-    "Direktori paket wisata Lombok resmi: Gili Trawangan, Pantai Pink, Mandalika, & Gili Nanggu. Konsultasi paket custom dengan asisten AI dan pemandu lokal profesional.",
+    "Explore Lombok, the Gili Islands, Pink Beach, and Mandalika with private tours, local guides, and customizable itineraries.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id">
+    <html lang="en">
       <body className="font-sans antialiased text-slate-800 bg-slate-50/50">
         <JsonLd
           data={{

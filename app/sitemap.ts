@@ -8,8 +8,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const latestPost = posts.map((p) => p.updated ?? p.date).sort().at(-1);
 
   return [
-    // Halaman Bahasa Indonesia (Utama)
-    { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1.0 },
+    // English is the default landing page.
+    { url: absoluteUrl("/en"), changeFrequency: "weekly", priority: 1.0 },
+    { url: absoluteUrl("/id"), changeFrequency: "weekly", priority: 0.9 },
     {
       url: absoluteUrl("/blog"),
       lastModified: latestPost,
@@ -33,8 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     })),
 
-    // Halaman Bahasa Inggris (English Version)
-    { url: absoluteUrl("/en"), changeFrequency: "weekly", priority: 1.0 },
     ...categories.map((c) => ({
       url: absoluteUrl(`/en/kategori/${c.slug}`),
       changeFrequency: "weekly" as const,

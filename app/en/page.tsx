@@ -19,9 +19,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/en",
     languages: {
-      "id-ID": "/",
+      "id-ID": "/id",
       "en-US": "/en",
-      "x-default": "/",
+      "x-default": "/en",
     },
   },
   openGraph: {
@@ -202,4 +202,3 @@ export default async function EnglishHomePage({
     </>
   );
 }
-

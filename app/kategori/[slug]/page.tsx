@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         "id-ID": url,
         "en-US": `/en/kategori/${cat.slug}`,
-        "x-default": url,
+        "x-default": `/en/kategori/${cat.slug}`,
       },
     },
     openGraph: {
@@ -268,4 +268,3 @@ export default async function CategoryDetailPage({ params }: Props) {
     </>
   );
 }
-

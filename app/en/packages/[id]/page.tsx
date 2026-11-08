@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         "id-ID": `/packages/${pkg.id}`,
         "en-US": url,
-        "x-default": `/packages/${pkg.id}`,
+        "x-default": url,
       },
     },
     openGraph: {
@@ -292,4 +292,3 @@ export default async function EnglishPackageDetailPage({ params }: Props) {
     </>
   );
 }
-

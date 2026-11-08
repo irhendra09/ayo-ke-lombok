@@ -35,7 +35,7 @@ export default function Hero({
         </p>
 
         <form
-          action={isEn ? "/en#paket" : "/#paket"}
+          action={isEn ? "/en#paket" : "/id#paket"}
           method="get"
           className="mt-6 grid gap-2.5 rounded-2xl bg-white p-2.5 shadow-xl sm:mt-10 sm:gap-3 sm:p-3 sm:grid-cols-[1fr_auto_auto_auto]"
         >

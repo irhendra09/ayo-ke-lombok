@@ -1,58 +1,55 @@
-# Ayo ke Lombok
+# Kala Lombok
 
 Next.js (App Router) + React + Tailwind CSS + Lucide Icons.
 
-## Menjalankan
+## Getting Started
 
 ```bash
-cp .env.example .env.local
+copy .env.example .env.local
 npm install
 npm run dev        # http://localhost:3000
 ```
 
-Backend FastAPI harus berjalan di `BACKEND_URL` (default `http://localhost:8000`).
-Semua request `/api/v1/*` di-proxy oleh Next.js (lihat `next.config.mjs`), jadi
-tidak perlu mengatur CORS.
+The FastAPI backend must be available at `BACKEND_URL` (defaults to
+`http://localhost:8000`). Next.js proxies all `/api/v1/*` requests through
+`next.config.mjs`, so CORS configuration is not required.
 
-## Halaman
+## Pages
 
-| Route | Fungsi |
+| Route | Description |
 | --- | --- |
-| `/` | Landing page: hero + filter (cari, destinasi, durasi) + grid paket |
-| `/packages/[id]` | Detail paket: galeri, harga, include/exclude, itinerary per hari, tombol WhatsApp |
-| `/blog`, `/blog/[slug]` | Blog SEO: 7 artikel, JSON-LD (BlogPosting, FAQPage, BreadcrumbList), daftar isi, tautan ke paket |
-| `/sitemap.xml`, `/robots.txt` | Dibuat otomatis (`app/sitemap.ts`, `app/robots.ts`); `/admin` dikecualikan |
-| `/admin/documents` | Form unggah PDF (tenant_id, judul, file) |
-| (semua halaman) | Widget chat AI mengambang di kanan bawah |
+| `/` | Redirects to the default English homepage |
+| `/en` | English homepage |
+| `/id` | Indonesian homepage |
+| `/en/kategori/[slug]`, `/en/packages/[id]` | English destination and tour package pages |
+| `/kategori/[slug]`, `/packages/[id]` | Indonesian destination and tour package pages |
+| `/blog`, `/blog/[slug]` | Indonesian travel guides and SEO articles |
+| `/sitemap.xml`, `/robots.txt` | Automatically generated SEO files |
+| `/admin/documents` | PDF upload form (`tenant_id`, title, and file) |
+| All pages | Floating AI chat widget |
 
-## Kontrak API yang diasumsikan
+## API Contract
 
-Sesuaikan `lib/api.ts` jika backend Anda berbeda.
+Update `lib/api.ts` if your backend uses a different contract.
 
-- `POST /api/v1/chat`, body JSON `{ tenant_id, customer_id, message }`, respons `{ "answer": "..." }`
-  (juga diterima `reply` atau `response`).
-- `POST /api/v1/documents`, `multipart/form-data` dengan field `tenant_id`, `title`, `file`.
-  Respons JSON opsional `{ message, chunks }`.
+- `POST /api/v1/chat`: JSON body `{ tenant_id, customer_id, message }`; response `{ "answer": "..." }` (also accepts `reply` or `response`).
+- `POST /api/v1/documents`: `multipart/form-data` fields `tenant_id`, `title`, and `file`; optional JSON response `{ message, chunks }`.
 
-`customer_id` berupa UUID yang disimpan di `localStorage` (sesuai batasan MVP: tanpa autentikasi pengunjung).
+`customer_id` is a UUID stored in `localStorage` (MVP limitation: visitor authentication is not implemented).
 
-## Yang perlu Anda ganti
+## Configuration
 
-- `lib/packages.ts`: data paket disusun mengacu pada https://lomboktraveling.id/lombok-tour/ (teks ditulis ulang). Harga dan daftar "include" **perlu Anda konfirmasi**, karena halaman referensi tidak merinci fasilitas dan beberapa harga berbeda antara halaman daftar dan halaman detail.
-- `components/PhotoPlaceholder.tsx`: gradient pengganti foto. Ganti dengan `next/image` dan foto asli.
-- `NEXT_PUBLIC_WHATSAPP_NUMBER` dan `NEXT_PUBLIC_TENANT_ID` di `.env.local`.
+- `lib/packages.ts`: tour package data is based on https://lomboktraveling.id/lombok-tour/ (itineraries and facilities have been rewritten). Confirm prices and inclusions, as the reference does not specify all facilities and some prices differ between listing and detail pages.
+- `components/PhotoPlaceholder.tsx`: replace the gradient photo placeholder with real images using `next/image`.
+- Set `NEXT_PUBLIC_WHATSAPP_NUMBER` and `NEXT_PUBLIC_TENANT_ID` in `.env.local`.
+- Set `NEXT_PUBLIC_SITE_URL` to the production domain before deployment.
 
-## SEO & blog
+## SEO and Blog
 
-- Artikel ada di `lib/blog.ts`. Tambah artikel baru dengan menambah satu objek di array `posts`; halaman,
-  sitemap, dan gambar sosial dibuat otomatis. Tautan internal ditulis `[teks](/path)`.
-- Set `NEXT_PUBLIC_SITE_URL` ke domain produksi sebelum deploy, supaya canonical dan sitemap benar.
-- Setelah live: daftarkan situs di Google Search Console, kirim `/sitemap.xml`, dan pasang Google Analytics
-  atau Plausible untuk memantau trafik organik.
-- Artikel sudah ditulis orisinal, tetapi tinjau fakta lokal dan tambahkan foto serta pengalaman asli tim Anda.
+Blog articles are in `lib/blog.ts`. Add a post to the `posts` array to generate its page, sitemap entry, and social image. Internal links use `[text](/path)` and are rendered by `components/RichText.tsx`.
 
-## Catatan keamanan
+After launch, register the site with Google Search Console, submit `/sitemap.xml`, and configure Google Analytics or Plausible to monitor organic traffic. Review local facts and add original team experience and photos before publishing articles.
 
-Halaman `/admin/documents` **belum memiliki autentikasi** (di luar cakupan MVP pada PRD). Jangan
-dipublikasikan ke internet tanpa melindunginya (mis. basic auth di reverse proxy, atau login admin),
-karena siapa pun bisa mengunggah dokumen ke basis pengetahuan AI.
+## Security Note
+
+`/admin/documents` does not have authentication and is outside the current MVP scope. Do not expose it publicly without access controls (for example, basic authentication at the reverse proxy or an admin login), as anyone could upload documents to the AI knowledge base.
